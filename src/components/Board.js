@@ -4,12 +4,14 @@ import "./Board.css";
 import Row from "./Row";
 
 const Board = () => {
-  const { mainBoard, handleStartButton, resetBoard } = useContext(MainContext);
+  const { mainBoard, handleStartButton, showBoard, handleReset } = useContext(
+    MainContext
+  );
 
   return (
     <div className="board-container">
       <div className="board">
-        {resetBoard ? (
+        {showBoard ? (
           <div>
             {mainBoard.map((row, i) => (
               <Row key={i} row={row} rowNum={i} />
@@ -19,12 +21,17 @@ const Board = () => {
           <div className="start">
             <h1>Welcome!</h1>
             <h3>Lets Play.</h3>
-            <button onClick={() => handleStartButton()}>
-              {resetBoard ? "Reset" : "Start"}
+            <button className="btn" onClick={() => handleStartButton()}>
+              Start
             </button>
           </div>
         )}
       </div>
+      {showBoard && (
+        <button className="btn" onClick={() => handleReset()}>
+          Reset
+        </button>
+      )}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 .board-container {
-  display: flex;
-
   min-width: 70vw;
+  text-align: center;
 }
 
 .board {
@@ -12,7 +11,6 @@
   max-width: 65%;
   width: 70vw;
   min-width: 70vh;
-  background-color: rgb(148, 84, 84);
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
   padding: 8px;
@@ -23,9 +21,9 @@
   margin-top: 20%;
 }
 
-.start > button {
+.btn {
   width: 50%;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 20%;
   padding: 5px 20px;
   background-color: rgb(226, 246, 255);
