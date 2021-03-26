@@ -7,16 +7,24 @@ const Board = () => {
   const { mainBoard, handleStartButton, resetBoard } = useContext(MainContext);
 
   return (
-    <div>
+    <div className="board-container">
       <div className="board">
-        {mainBoard.map((row, i) => (
-          <Row key={i} row={row} rowNum={i} />
-        ))}
+        {resetBoard ? (
+          <div>
+            {mainBoard.map((row, i) => (
+              <Row key={i} row={row} rowNum={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="start">
+            <h1>Welcome!</h1>
+            <h3>Lets Play.</h3>
+            <button onClick={() => handleStartButton()}>
+              {resetBoard ? "Reset" : "Start"}
+            </button>
+          </div>
+        )}
       </div>
-
-      <button onClick={() => handleStartButton()}>
-        {resetBoard ? "Reset" : "Start"}
-      </button>
     </div>
   );
 };

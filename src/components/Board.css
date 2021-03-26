@@ -1,11 +1,38 @@
+.board-container {
+  display: flex;
+
+  min-width: 70vw;
+}
+
 .board {
+  text-align: center;
+  justify-content: center;
   margin: 2% auto;
   min-height: 80vh;
-  min-width: 80vw;
-  /* width: 60vw; */
-  background-color: rgb(250, 243, 234);
-  border: 25px solid rgba(87, 8, 8, 0.849);
-  border-radius: 2px;
+  max-width: 65%;
+  width: 70vw;
+  min-width: 70vh;
+  background-color: rgb(148, 84, 84);
+  border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
-  padding: 0px;
+  padding: 8px;
+}
+
+.start {
+  color: white;
+  margin-top: 20%;
+}
+
+.start > button {
+  width: 50%;
+  margin-top: 20px;
+  height: 20%;
+  padding: 5px 20px;
+  background-color: rgb(226, 246, 255);
+  outline: none;
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  color: rgb(47, 44, 56);
+  cursor: pointer;
 }

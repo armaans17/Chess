@@ -3,12 +3,12 @@ import Square from "./Square";
 import "./Row.css";
 
 const Row = ({ row, rowNum }) => {
-  //   console.log(row);
+  let rowIsEven = rowNum % 2 === 0 ? true : false;
 
   return (
     <div className="row">
       {row.map((square, i) => (
-        <Square key={i} parity={i} rowNum={rowNum} />
+        <Square key={i} parity={rowIsEven ? i : i + 1} />
       ))}
     </div>
   );
