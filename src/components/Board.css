@@ -1,0 +1,11 @@
+.board {
+  margin: 2% auto;
+  min-height: 80vh;
+  min-width: 80vw;
+  /* width: 60vw; */
+  background-color: rgb(250, 243, 234);
+  border: 25px solid rgba(87, 8, 8, 0.849);
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+  padding: 0px;
+}
