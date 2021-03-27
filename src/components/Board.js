@@ -7,6 +7,7 @@ const Board = () => {
   const { mainBoard, handleStartButton, showBoard, handleReset } = useContext(
     MainContext
   );
+  console.log(mainBoard);
 
   return (
     <div className="board-container">

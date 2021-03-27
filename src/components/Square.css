@@ -3,13 +3,15 @@
   width: 100%;
   border: 1px solid black;
   margin: 0;
-  padding: 0;
+  padding: 8px;
+  font-size: 30px;
+  color: rgba(250, 241, 240, 0.986);
 }
 
 .black {
-  background-color: rgb(19, 4, 4);
+  background-color: rgb(71, 29, 29);
 }
 
 .white {
-  background-color: rgb(248, 242, 242);
+  background-color: rgba(255, 255, 255, 0.5);
 }
