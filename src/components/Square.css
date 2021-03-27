@@ -8,17 +8,17 @@
 }
 
 .black {
-  background-color: rgb(71, 29, 29);
+  background-color: rgba(61, 119, 46, 0.74);
 }
 
 .white {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.363);
 }
 
 .piece-light {
-  color: rgba(250, 241, 240, 0.986);
+  color: rgba(249, 250, 250, 0.986);
 }
 
 .piece-dark {
-  color: black;
+  color: rgb(5, 7, 0);
 }

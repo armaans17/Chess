@@ -17,7 +17,9 @@ export const pieces = [
   "space",
 ];
 
-export const getCurrentPiece = (code, isWhite, handleColorChange) => {
+let isWhite = false;
+
+export const getCurrentPiece = (code) => {
   let piece = pieces[code];
 
   let color = isWhite ? "piece-light" : "piece-dark";
@@ -36,6 +38,6 @@ export const getCurrentPiece = (code, isWhite, handleColorChange) => {
     case "pawn":
       return <FaChessPawn className={color} />;
     default:
-      return;
+      return (isWhite = true);
   }
 };
