@@ -5,6 +5,7 @@ export const MainContext = createContext();
 export const MainContextProvider = ({ children }) => {
   const [mainBoard, setMainBoard] = useState([]);
   const [showBoard, setShowBoard] = useState(false);
+  const [isWhite, setIsWhite] = useState(false);
 
   const handleStartButton = () => {
     setMainBoard(
@@ -14,7 +15,7 @@ export const MainContextProvider = ({ children }) => {
         } else if (i === 1 || i === 6) {
           return Array(8).fill(5);
         } else {
-          return Array(8).fill(7);
+          return Array(8).fill(6);
         }
       })
     );
@@ -24,11 +25,23 @@ export const MainContextProvider = ({ children }) => {
   const handleReset = () => {
     setMainBoard([]);
     setShowBoard(false);
+    setIsWhite(false);
+  };
+
+  const handleColorChange = () => {
+    setIsWhite(true);
   };
 
   return (
     <MainContext.Provider
-      value={{ mainBoard, handleStartButton, showBoard, handleReset }}
+      value={{
+        mainBoard,
+        handleStartButton,
+        showBoard,
+        handleReset,
+        isWhite,
+        handleColorChange,
+      }}
     >
       {children}
     </MainContext.Provider>
