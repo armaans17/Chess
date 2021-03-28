@@ -29,19 +29,29 @@ export const MainContextProvider = ({ children }) => {
   // Game Logic
 
   const [pieceSelected, setPieceSelected] = useState(false);
-  let currentPiece;
-  let currentPieceLocation;
+  const [currentPiece, setCurrentPiece] = useState("");
+  const [currentPieceLocation, setCurrentPieceLocation] = useState([]);
 
   const handleMove = (code, coordinates) => {
     setPieceSelected(true);
-    currentPiece = code;
-    currentPieceLocation = coordinates;
+    setCurrentPiece(code);
+    setCurrentPieceLocation(coordinates);
   };
 
   const handleChangePositon = (code, coordinates) => {
-    console.log(currentPiece, currentPieceLocation, code, coordinates);
+    console.log(
+      "first",
+      currentPiece,
+      currentPieceLocation,
+      "second",
+      code,
+      coordinates
+    );
 
-    setPieceSelected(true);
+    const updatedBoard = mainBoard.map((row, i) => {});
+
+    setMainBoard(updatedBoard);
+    setPieceSelected(false);
   };
 
   // Reset Board
