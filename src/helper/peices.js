@@ -17,12 +17,10 @@ export const pieces = [
   "space",
 ];
 
-let isWhite = false;
+export const setCurrentPiece = (code) => {
+  let piece = pieces[parseInt(code[0])];
 
-export const getCurrentPiece = (code) => {
-  let piece = pieces[code];
-
-  let color = isWhite ? "piece-light" : "piece-dark";
+  let color = code[1] === "W" ? "piece-light" : "piece-dark";
 
   switch (piece) {
     case "rook":
@@ -38,6 +36,6 @@ export const getCurrentPiece = (code) => {
     case "pawn":
       return <FaChessPawn className={color} />;
     default:
-      return (isWhite = true);
+      return;
   }
 };

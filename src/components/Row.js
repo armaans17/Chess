@@ -8,7 +8,12 @@ const Row = ({ row, rowNum }) => {
   return (
     <div className="row">
       {row.map((square, i) => (
-        <Square key={i} parity={rowIsEven ? i : i + 1} code={square} />
+        <Square
+          key={i}
+          parity={rowIsEven ? i : i + 1}
+          code={square}
+          coordinates={[rowNum, i]}
+        />
       ))}
     </div>
   );

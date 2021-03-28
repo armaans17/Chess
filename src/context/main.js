@@ -9,27 +9,42 @@ export const MainContextProvider = ({ children }) => {
   const handleStartButton = () => {
     setMainBoard(
       [...Array(8)].map((e, i) => {
-        if (i === 0 || i === 7) {
-          return [0, 1, 2, 3, 4, 2, 1, 0];
-        } else if (i === 1 || i === 6) {
-          return Array(8).fill(5);
-        } else {
-          return Array(8).fill(6);
+        switch (i) {
+          case 0:
+            return ["0B", "1B", "2B", "3B", "4B", "2B", "1B", "0B"];
+          case 1:
+            return Array(8).fill("5B");
+          case 7:
+            return ["0W", "1W", "2W", "3W", "4W", "2W", "1W", "0W"];
+          case 6:
+            return Array(8).fill("5W");
+          default:
+            return Array(8).fill(6);
         }
-
-        //   switch (i) {
-        //     case 0:
-        //     return [0, 1, 2, 3, 4, 2, 1, 0];
-        //     case 1:
-        //       return Array(8).fill(5);
-        //       case :
-
-        //   }
       })
     );
     setShowBoard(true);
   };
 
+  // Game Logic
+
+  const [pieceSelected, setPieceSelected] = useState(false);
+  let currentPiece;
+  let currentPieceLocation;
+
+  const handleMove = (code, coordinates) => {
+    setPieceSelected(true);
+    currentPiece = code;
+    currentPieceLocation = coordinates;
+  };
+
+  const handleChangePositon = (code, coordinates) => {
+    console.log(currentPiece, currentPieceLocation, code, coordinates);
+
+    setPieceSelected(true);
+  };
+
+  // Reset Board
   const handleReset = () => {
     setMainBoard([]);
     setShowBoard(false);
@@ -42,6 +57,9 @@ export const MainContextProvider = ({ children }) => {
         handleStartButton,
         showBoard,
         handleReset,
+        handleMove,
+        pieceSelected,
+        handleChangePositon,
       }}
     >
       {children}
