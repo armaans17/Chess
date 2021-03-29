@@ -27,12 +27,12 @@ export const MainContextProvider = ({ children }) => {
   };
 
   // Game Logic
-
   const [pieceSelected, setPieceSelected] = useState(false);
   const [currentPiece, setCurrentPiece] = useState("");
   const [currentPieceLocation, setCurrentPieceLocation] = useState([]);
 
   const handleMove = (code, coordinates) => {
+    if (code === 6) return;
     setPieceSelected(true);
     setCurrentPiece(code);
     setCurrentPieceLocation(coordinates);
@@ -40,17 +40,32 @@ export const MainContextProvider = ({ children }) => {
 
   const handleChangePositon = (code, coordinates) => {
     console.log(
-      "first",
+      "selected",
       currentPiece,
       currentPieceLocation,
-      "second",
+      "drop",
       code,
       coordinates
     );
 
-    const updatedBoard = mainBoard.map((row, i) => {});
-
-    setMainBoard(updatedBoard);
+    mainBoard.map((row, i) => {
+      if (i !== coordinates[0]) {
+        return mainBoard[i];
+      } else {
+        row.map((square, y) => {
+          if (y !== coordinates[1]) {
+            return square[y];
+          } else {
+            let [x, y] = currentPieceLocation;
+            console.log(x, y);
+            mainBoard[x][y] = 6;
+            return (row[y] = currentPiece);
+          }
+        });
+      }
+    });
+    // console.log(updatedBoard);
+    // setMainBoard(updatedBoard);
     setPieceSelected(false);
   };
 

@@ -21,6 +21,7 @@ const Square = ({ parity, code, coordinates }) => {
     <div
       className={`square ${parity % 2 === 0 ? "white" : "black"}`}
       onClick={() => handleSquare()}
+      draggable="true"
     >
       {setCurrentPiece(code)}
     </div>
