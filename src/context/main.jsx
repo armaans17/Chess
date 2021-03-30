@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import handleValidation from "../pieceLogic/pieceLogic";
 
 export const MainContext = createContext();
 
@@ -62,14 +63,18 @@ export const MainContextProvider = ({ children }) => {
           if (y !== coordinates[1]) {
             return row[y];
           } else {
-            return (row[y] = currentPiece);
+            if (handleValidation(currentPiece, code, coordinates)) {
+              row[y] = currentPiece;
+              let [a, b] = currentPieceLocation;
+              mainBoard[a][b] = 6;
+              return;
+            } else {
+              return row[y];
+            }
           }
         });
       }
     });
-
-    let [x, y] = currentPieceLocation;
-    mainBoard[x][y] = 6;
 
     setPieceSelected(false);
     setTotalMoves(totalMoves + 1);

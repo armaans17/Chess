@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { MainContext } from "../context/main";
 
-import { setCurrentPiece } from "../helper/peices";
+import { setCurrentPiece } from "../pieceLogic/peices";
 import "./Square.css";
 
 const Square = ({ parity, code, coordinates }) => {
