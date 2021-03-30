@@ -5,6 +5,7 @@ export const MainContext = createContext();
 export const MainContextProvider = ({ children }) => {
   const [mainBoard, setMainBoard] = useState([]);
   const [showBoard, setShowBoard] = useState(false);
+  const [totalMoves, setTotalMoves] = useState(1);
 
   const handleStartButton = () => {
     setMainBoard(
@@ -26,7 +27,6 @@ export const MainContextProvider = ({ children }) => {
     setShowBoard(true);
   };
 
-  // Game Logic
   const [pieceSelected, setPieceSelected] = useState(false);
   const [currentPiece, setCurrentPiece] = useState("");
   const [currentPieceLocation, setCurrentPieceLocation] = useState([]);
@@ -39,6 +39,12 @@ export const MainContextProvider = ({ children }) => {
   };
 
   const handleChangePositon = (code, coordinates) => {
+    if (code[1] === currentPiece[1]) {
+      setCurrentPiece(code);
+      setCurrentPieceLocation(coordinates);
+      return;
+    }
+
     console.log(
       "selected",
       currentPiece,
@@ -54,22 +60,21 @@ export const MainContextProvider = ({ children }) => {
       } else {
         row.map((square, y) => {
           if (y !== coordinates[1]) {
-            return square[y];
+            return row[y];
           } else {
-            let [x, y] = currentPieceLocation;
-            console.log(x, y);
-            mainBoard[x][y] = 6;
             return (row[y] = currentPiece);
           }
         });
       }
     });
-    // console.log(updatedBoard);
-    // setMainBoard(updatedBoard);
+
+    let [x, y] = currentPieceLocation;
+    mainBoard[x][y] = 6;
+
     setPieceSelected(false);
+    setTotalMoves(totalMoves + 1);
   };
 
-  // Reset Board
   const handleReset = () => {
     setMainBoard([]);
     setShowBoard(false);

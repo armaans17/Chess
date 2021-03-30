@@ -7,6 +7,18 @@
   font-size: 41px;
 }
 
+.pointer {
+  cursor: grab;
+}
+
+.pointer:hover {
+  opacity: 0.9;
+}
+
+.pointer:active {
+  cursor: grabbing;
+}
+
 .black {
   background-color: rgba(82, 240, 232, 0.507);
 }
@@ -17,9 +29,16 @@
 
 .piece-light {
   color: rgb(255, 255, 253);
-  /* margin-bottom: 9px; */
+}
+
+.piece-light:hover {
+  transform: scale(1.1);
 }
 
 .piece-dark {
   color: rgb(5, 7, 0);
+}
+
+.piece-dark:hover {
+  transform: scale(1.1);
 }

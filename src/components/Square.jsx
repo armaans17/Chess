@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MainContext } from "../context/main";
 
 import { setCurrentPiece } from "../helper/peices";
@@ -9,8 +9,10 @@ const Square = ({ parity, code, coordinates }) => {
     MainContext
   );
 
+  const isWhite = parity % 2 === 0 ? "white" : "black";
+  const givePointer = code !== 6 ? "pointer" : "";
+
   const handleSquare = () => {
-    console.log(pieceSelected);
     if (pieceSelected) {
       return handleChangePositon(code, coordinates);
     }
@@ -19,7 +21,7 @@ const Square = ({ parity, code, coordinates }) => {
 
   return (
     <div
-      className={`square ${parity % 2 === 0 ? "white" : "black"}`}
+      className={`square ${isWhite} ${givePointer} `}
       onClick={() => handleSquare()}
       draggable="true"
     >
