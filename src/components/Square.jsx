@@ -10,7 +10,7 @@ const Square = ({ parity, code, coordinates }) => {
   );
 
   const isWhite = parity % 2 === 0 ? "white" : "black";
-  const givePointer = code !== 6 ? "pointer" : "";
+  const givePointer = code !== "" ? "pointer" : "";
 
   const handleSquare = () => {
     if (pieceSelected) {

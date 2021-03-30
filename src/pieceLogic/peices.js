@@ -7,20 +7,18 @@ import {
 } from "react-icons/fa";
 import "../components/Square.css";
 
-export const pieces = [
-  "rook",
-  "knight",
-  "bishop",
-  "queen",
-  "king",
-  "pawn",
-  "space",
-];
+export const pieces = {
+  rook: {},
+  knight: {},
+  bishop: {},
+  queen: {},
+  king: {},
+  pawn: {},
+};
 
 export const setCurrentPiece = (code) => {
-  let piece = pieces[parseInt(code[0])];
-
-  let color = code[1] === "W" ? "piece-light" : "piece-dark";
+  let piece = code.slice(0, code.length - 1);
+  let color = code[code.length - 1] === "W" ? "piece-light" : "piece-dark";
 
   switch (piece) {
     case "rook":

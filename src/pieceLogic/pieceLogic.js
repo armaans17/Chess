@@ -1,14 +1,30 @@
 const handleValidation = (currentPiece, dropSquare, dropLocation) => {
-  console.log(currentPiece[0]);
-  switch (currentPiece[0]) {
-    case "5":
+  let piece = currentPiece.slice(0, currentPiece.length - 1);
+
+  switch (piece) {
+    case "pawn":
       return handlePawnMove();
     default:
       return false;
   }
 
+  // Situations to take care when handling pawn move
+  // Check White or Black
+  // Check Drop Location
+  // If unvalid return false else continue with validation
   function handlePawnMove() {
-    console.log("drop", dropLocation);
+    currentPiece[currentPiece.length - 1] === "W"
+      ? handleWhitePawn()
+      : handleBlackPawn();
+
+    function handleWhitePawn() {
+      console.log("white Pawn");
+    }
+
+    function handleBlackPawn() {
+      console.log("black Pawn");
+    }
+
     return true;
   }
 };

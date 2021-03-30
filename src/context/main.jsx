@@ -13,15 +13,33 @@ export const MainContextProvider = ({ children }) => {
       [...Array(8)].map((e, i) => {
         switch (i) {
           case 0:
-            return ["0B", "1B", "2B", "3B", "4B", "2B", "1B", "0B"];
+            return [
+              "rookB",
+              "knightB",
+              "bishopB",
+              "queenB",
+              "kingB",
+              "bishopB",
+              "knightB",
+              "rookB",
+            ];
           case 1:
-            return Array(8).fill("5B");
+            return Array(8).fill("pawnB");
           case 7:
-            return ["0W", "1W", "2W", "3W", "4W", "2W", "1W", "0W"];
+            return [
+              "rookW",
+              "knightW",
+              "bishopW",
+              "queenW",
+              "kingW",
+              "bishopW",
+              "knightW",
+              "rookW",
+            ];
           case 6:
-            return Array(8).fill("5W");
+            return Array(8).fill("pawnW");
           default:
-            return Array(8).fill(6);
+            return Array(8).fill("");
         }
       })
     );
@@ -33,14 +51,14 @@ export const MainContextProvider = ({ children }) => {
   const [currentPieceLocation, setCurrentPieceLocation] = useState([]);
 
   const handleMove = (code, coordinates) => {
-    if (code === 6) return;
+    if (code === "") return;
     setPieceSelected(true);
     setCurrentPiece(code);
     setCurrentPieceLocation(coordinates);
   };
 
   const handleChangePositon = (code, coordinates) => {
-    if (code[1] === currentPiece[1]) {
+    if (code[code.length - 1] === currentPiece[currentPiece.length - 1]) {
       setCurrentPiece(code);
       setCurrentPieceLocation(coordinates);
       return;
@@ -66,7 +84,7 @@ export const MainContextProvider = ({ children }) => {
             if (handleValidation(currentPiece, code, coordinates)) {
               row[y] = currentPiece;
               let [a, b] = currentPieceLocation;
-              mainBoard[a][b] = 6;
+              mainBoard[a][b] = "";
               return;
             } else {
               return row[y];
@@ -74,6 +92,7 @@ export const MainContextProvider = ({ children }) => {
           }
         });
       }
+      return true;
     });
 
     setPieceSelected(false);
