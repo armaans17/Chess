@@ -1,7 +1,10 @@
-const handleValidation = (currentPiece, dropSquare, dropLocation) => {
-  let piece = currentPiece.slice(0, currentPiece.length - 1);
-
-  switch (piece) {
+const handleValidation = (
+  piece,
+  currentPieceLocation,
+  dropLocationPiece,
+  dropLocation
+) => {
+  switch (piece.name) {
     case "pawn":
       return handlePawnMove();
     default:
@@ -13,12 +16,17 @@ const handleValidation = (currentPiece, dropSquare, dropLocation) => {
   // Check Drop Location
   // If unvalid return false else continue with validation
   function handlePawnMove() {
-    currentPiece[currentPiece.length - 1] === "W"
-      ? handleWhitePawn()
-      : handleBlackPawn();
+    piece.color === "white" ? handleWhitePawn() : handleBlackPawn();
 
     function handleWhitePawn() {
-      console.log("white Pawn");
+      console.log(
+        "white Pawn",
+        piece,
+        "from",
+        currentPieceLocation,
+        "to",
+        dropLocation
+      );
     }
 
     function handleBlackPawn() {

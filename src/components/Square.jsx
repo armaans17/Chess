@@ -4,19 +4,19 @@ import { MainContext } from "../context/main";
 import { setCurrentPiece } from "../pieceLogic/peices";
 import "./Square.css";
 
-const Square = ({ parity, code, coordinates }) => {
+const Square = ({ parity, piece, coordinates }) => {
   const { handleMove, pieceSelected, handleChangePositon } = useContext(
     MainContext
   );
 
   const isWhite = parity % 2 === 0 ? "white" : "black";
-  const givePointer = code !== "" ? "pointer" : "";
+  const givePointer = piece.name !== "" ? "pointer" : "";
 
   const handleSquare = () => {
     if (pieceSelected) {
-      return handleChangePositon(code, coordinates);
+      return handleChangePositon(piece, coordinates);
     }
-    return handleMove(code, coordinates);
+    return handleMove(piece, coordinates);
   };
 
   return (
@@ -25,7 +25,7 @@ const Square = ({ parity, code, coordinates }) => {
       onClick={() => handleSquare()}
       draggable="true"
     >
-      {setCurrentPiece(code)}
+      {setCurrentPiece(piece)}
     </div>
   );
 };

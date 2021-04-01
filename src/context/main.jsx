@@ -14,30 +14,38 @@ export const MainContextProvider = ({ children }) => {
         switch (i) {
           case 0:
             return [
-              "rookB",
-              "knightB",
-              "bishopB",
-              "queenB",
-              "kingB",
-              "bishopB",
-              "knightB",
-              "rookB",
+              { name: "rook", color: "black" },
+              { name: "knight", color: "black" },
+              { name: "bishop", color: "black" },
+              { name: "queen", color: "black" },
+              { name: "king", color: "black" },
+              { name: "bishop", color: "black" },
+              { name: "knight", color: "black" },
+              { name: "rook", color: "black" },
             ];
           case 1:
-            return Array(8).fill("pawnB");
+            return Array(8).fill({
+              name: "pawn",
+              color: "black",
+              firstMove: false,
+            });
           case 7:
             return [
-              "rookW",
-              "knightW",
-              "bishopW",
-              "queenW",
-              "kingW",
-              "bishopW",
-              "knightW",
-              "rookW",
+              { name: "rook", color: "white" },
+              { name: "knight", color: "white" },
+              { name: "bishop", color: "white" },
+              { name: "queen", color: "white" },
+              { name: "king", color: "white" },
+              { name: "bishop", color: "white" },
+              { name: "knight", color: "white" },
+              { name: "rook", color: "white" },
             ];
           case 6:
-            return Array(8).fill("pawnW");
+            return Array(8).fill({
+              name: "pawn",
+              color: "white",
+              firstMove: false,
+            });
           default:
             return Array(8).fill("");
         }
@@ -47,41 +55,39 @@ export const MainContextProvider = ({ children }) => {
   };
 
   const [pieceSelected, setPieceSelected] = useState(false);
-  const [currentPiece, setCurrentPiece] = useState("");
+  const [currentPiece, setCurrentPiece] = useState({});
   const [currentPieceLocation, setCurrentPieceLocation] = useState([]);
 
-  const handleMove = (code, coordinates) => {
-    if (code === "") return;
+  const handleMove = (piece, coordinates) => {
+    if (piece === "") return;
     setPieceSelected(true);
-    setCurrentPiece(code);
+    setCurrentPiece(piece);
     setCurrentPieceLocation(coordinates);
   };
 
-  const handleChangePositon = (code, coordinates) => {
-    if (code[code.length - 1] === currentPiece[currentPiece.length - 1]) {
-      setCurrentPiece(code);
-      setCurrentPieceLocation(coordinates);
+  const handleChangePositon = (dropLocationPiece, dropLocation) => {
+    if (dropLocationPiece.color === currentPiece.color) {
+      setCurrentPiece(dropLocationPiece);
+      setCurrentPieceLocation(dropLocation);
       return;
     }
 
-    console.log(
-      "selected",
-      currentPiece,
-      currentPieceLocation,
-      "drop",
-      code,
-      coordinates
-    );
-
     mainBoard.map((row, i) => {
-      if (i !== coordinates[0]) {
+      if (i !== dropLocation[0]) {
         return mainBoard[i];
       } else {
         row.map((square, y) => {
-          if (y !== coordinates[1]) {
+          if (y !== dropLocation[1]) {
             return row[y];
           } else {
-            if (handleValidation(currentPiece, code, coordinates)) {
+            if (
+              handleValidation(
+                currentPiece,
+                currentPieceLocation,
+                dropLocationPiece,
+                dropLocation
+              )
+            ) {
               row[y] = currentPiece;
               let [a, b] = currentPieceLocation;
               mainBoard[a][b] = "";

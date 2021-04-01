@@ -10,3 +10,29 @@ body {
   justify-content: center;
   background-image: url(https://media1.thehungryjpeg.com/thumbs2/ori_112089_334a1bc9e07c0d4ba92514a0dffbf504325fdaf0_20-dark-wood-background-textures.jpg);
 }
+
+.app {
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  color: rgb(255, 255, 255);
+  list-style: none;
+  background: firebrick;
+  width: 10%;
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.individual {
+}
+
+.vertical {
+  margin: 15px;
+  height: 100%;
+}
+
+.horizontal {
+  display: flex;
+}

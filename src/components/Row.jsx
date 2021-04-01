@@ -11,7 +11,7 @@ const Row = ({ row, rowNum }) => {
         <Square
           key={i}
           parity={rowIsEven ? i : i + 1}
-          code={square}
+          piece={square}
           coordinates={[rowNum, i]}
         />
       ))}

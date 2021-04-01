@@ -7,32 +7,22 @@ import {
 } from "react-icons/fa";
 import "../components/Square.css";
 
-export const pieces = {
-  rook: {},
-  knight: {},
-  bishop: {},
-  queen: {},
-  king: {},
-  pawn: {},
-};
+export const setCurrentPiece = ({ name, color }) => {
+  let pieceColor = color === "white" ? "piece-light" : "piece-dark";
 
-export const setCurrentPiece = (code) => {
-  let piece = code.slice(0, code.length - 1);
-  let color = code[code.length - 1] === "W" ? "piece-light" : "piece-dark";
-
-  switch (piece) {
+  switch (name) {
     case "rook":
-      return <GiChessRook className={color} />;
+      return <GiChessRook className={pieceColor} />;
     case "knight":
-      return <FaChessKnight className={color} />;
+      return <FaChessKnight className={pieceColor} />;
     case "bishop":
-      return <FaChessBishop className={color} />;
+      return <FaChessBishop className={pieceColor} />;
     case "queen":
-      return <GiChessQueen className={color} />;
+      return <GiChessQueen className={pieceColor} />;
     case "king":
-      return <FaChessKing className={color} />;
+      return <FaChessKing className={pieceColor} />;
     case "pawn":
-      return <FaChessPawn className={color} />;
+      return <FaChessPawn className={pieceColor} />;
     default:
       return;
   }
