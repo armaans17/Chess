@@ -16,22 +16,42 @@ const handleValidation = (
   // Check Drop Location
   // If unvalid return false else continue with validation
   function handlePawnMove() {
+    console.log(currentPieceLocation, dropLocation);
     return piece.color === "white" ? handleWhitePawn() : handleBlackPawn();
 
     function handleWhitePawn() {
+      // Double Move
       if (
         currentPieceLocation[0] - dropLocation[0] === 2 &&
         currentPieceLocation[1] === dropLocation[1] &&
-        !piece.firstMove
+        !piece.firstMove &&
+        dropLocationPiece === ""
       ) {
-        console.log(piece.firstMove);
         piece.firstMove = true;
         return true;
+      }
+      // Single Move
+      else if (currentPieceLocation[0] - dropLocation[0] === 1) {
+        if (dropLocation[1] === currentPieceLocation[1]) {
+          piece.firstMove = true;
+          return true;
+        }
+        if (
+          dropLocation[1] === currentPieceLocation[1] + 1 ||
+          dropLocation[1] === currentPieceLocation[1] - 1
+        ) {
+          if (dropLocationPiece === "") {
+            alert("invalid move");
+            return false;
+          } else {
+            return true;
+          }
+        }
       }
     }
 
     function handleBlackPawn() {
-      console.log("black Pawn");
+      return true;
     }
   }
 };

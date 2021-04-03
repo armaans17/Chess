@@ -7,6 +7,10 @@ export const MainContextProvider = ({ children }) => {
   const [mainBoard, setMainBoard] = useState([]);
   const [showBoard, setShowBoard] = useState(false);
   const [totalMoves, setTotalMoves] = useState(1);
+  const [player, setPlayer] = useState(true);
+  const WB = player ? "white" : "black";
+
+  const [firstMoveDone, setFirstMoveDone] = useState(false);
 
   const handleStartButton = () => {
     setMainBoard(
@@ -70,9 +74,18 @@ export const MainContextProvider = ({ children }) => {
 
   const handleMove = (piece, coordinates) => {
     if (piece === "") return;
+    if (piece.color !== WB) {
+      alert(`${WB}'s turn!`);
+      return;
+    }
+    if (!firstMoveDone && piece.color !== "white") return;
+
     setPieceSelected(true);
     setCurrentPiece(piece);
     setCurrentPieceLocation(coordinates);
+    console.log(firstMoveDone, WB);
+    setFirstMoveDone(!firstMoveDone);
+    console.log(firstMoveDone, WB);
   };
 
   const handleChangePositon = (dropLocationPiece, dropLocation) => {
@@ -101,6 +114,7 @@ export const MainContextProvider = ({ children }) => {
               row[y] = currentPiece;
               let [a, b] = currentPieceLocation;
               mainBoard[a][b] = "";
+              setPlayer(!player);
               return;
             } else {
               return row[y];
@@ -115,8 +129,6 @@ export const MainContextProvider = ({ children }) => {
     setTotalMoves(totalMoves + 1);
   };
 
-  const handlePawnFirstMove = (id) => {};
-
   const handleReset = () => {
     setMainBoard([]);
     setShowBoard(false);
@@ -129,10 +141,10 @@ export const MainContextProvider = ({ children }) => {
         handleStartButton,
         showBoard,
         handleReset,
+        player,
         handleMove,
         pieceSelected,
         handleChangePositon,
-        handlePawnFirstMove,
       }}
     >
       {children}
