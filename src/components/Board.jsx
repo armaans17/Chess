@@ -1,21 +1,40 @@
 import React, { useContext } from "react";
 import { MainContext } from "../context/main";
+import { setCurrentPiece } from "../pieceLogic/peices";
 import "./Board.css";
 import Row from "./Row";
 
 const Board = () => {
-  const { mainBoard, handleStartButton, showBoard, handleReset } = useContext(
-    MainContext
-  );
-  console.log(mainBoard);
+  const {
+    mainBoard,
+    handleStartButton,
+    showBoard,
+    handleReset,
+    capturedBlackPieces,
+    capturedWhitePieces,
+  } = useContext(MainContext);
+  console.log(mainBoard, capturedBlackPieces);
+
   return (
     <div className="board-container">
+      {showBoard && (
+        <div className="piece-container align-bottom">
+          {capturedBlackPieces.map((capturedPiece, i) => (
+            <div key={i}>{setCurrentPiece(capturedPiece)}</div>
+          ))}
+        </div>
+      )}
       <div className="board">
         {showBoard ? (
           <div>
             {mainBoard.map((row, i) => (
               <Row key={i} row={row} rowNum={i} />
             ))}
+            {/* {showBoard && (
+              <button className="btn" onClick={() => handleReset()}>
+                Reset
+              </button>
+            )} */}
           </div>
         ) : (
           <div className="start">
@@ -28,9 +47,13 @@ const Board = () => {
         )}
       </div>
       {showBoard && (
-        <button className="btn" onClick={() => handleReset()}>
-          Reset
-        </button>
+        <div className="piece-container">
+          {capturedWhitePieces.map((capturedPiece, i) => (
+            <div key={i} className="captured-piece">
+              {setCurrentPiece(capturedPiece)}
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -1,10 +1,11 @@
 .square {
   height: 100%;
+  min-width: 90px;
   width: 100%;
   border: 1px solid black;
   margin: 0;
   padding: 8px;
-  font-size: 41px;
+  font-size: 55px;
 }
 
 .pointer {
@@ -20,11 +21,11 @@
 }
 
 .black {
-  background-color: rgba(219, 91, 108, 0.507);
+  background-color: rgba(151, 142, 142, 0.568);
 }
 
 .white {
-  background-color: rgba(255, 255, 255, 0.664);
+  background-color: rgba(219, 207, 207, 0.301);
 }
 
 .piece-light {

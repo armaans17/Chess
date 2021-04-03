@@ -1,19 +1,40 @@
 .board-container {
   min-width: 70vw;
   text-align: center;
+  display: flex;
 }
 
 .board {
+  display: flex;
   text-align: center;
-  justify-content: center;
+  justify-content: space-around;
   margin: 2% auto;
   min-height: 80vh;
-  max-width: 65%;
+  max-width: 65vh;
   /* width: 70vw; */
-  min-width: 100vh;
+  min-width: 115vh;
   border-radius: 5px;
   box-shadow: 0 -1px 8px 1px rgba(168, 172, 167, 0.747);
   padding: 8px;
+  overflow: visible;
+}
+
+.piece-container {
+  display: flex;
+  max-width: 20vw;
+  border-radius: 10px;
+  width: 15vw;
+  height: 25vh;
+  justify-content: center;
+  background: rgba(223, 217, 215, 0.459);
+  margin: 2% 10px;
+  padding: 5px;
+  font-size: 30px;
+  flex-wrap: wrap;
+}
+
+.align-bottom {
+  align-self: flex-end;
 }
 
 .start {

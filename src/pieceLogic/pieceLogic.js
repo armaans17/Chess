@@ -6,6 +6,7 @@ const handleValidation = (
   dropLocationPiece,
   dropLocation
 ) => {
+  return true;
   switch (piece.name) {
     case "pawn":
       return handlePawnMove();

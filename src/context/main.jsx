@@ -7,9 +7,9 @@ export const MainContextProvider = ({ children }) => {
   const [mainBoard, setMainBoard] = useState([]);
   const [showBoard, setShowBoard] = useState(false);
   const [totalMoves, setTotalMoves] = useState(1);
+
   const [player, setPlayer] = useState(true);
   const WB = player ? "white" : "black";
-
   const [firstMoveDone, setFirstMoveDone] = useState(false);
 
   const handleStartButton = () => {
@@ -72,11 +72,14 @@ export const MainContextProvider = ({ children }) => {
   const [currentPiece, setCurrentPiece] = useState({});
   const [currentPieceLocation, setCurrentPieceLocation] = useState([]);
 
+  const [capturedWhitePieces, setCapturedWhitePieces] = useState([]);
+  const [capturedBlackPieces, setCapturedBlackPieces] = useState([]);
+
   const handleMove = (piece, coordinates) => {
     if (piece === "") return;
 
     if (piece.color !== WB) {
-      alert(`${WB}'s turn!`);
+      alert(`${WB}'s move!`);
       return;
     }
 
@@ -87,6 +90,12 @@ export const MainContextProvider = ({ children }) => {
     setCurrentPieceLocation(coordinates);
     console.log(firstMoveDone, WB);
     setFirstMoveDone(true);
+  };
+
+  const handleCapturedPiece = (capturedPiece) => {
+    capturedPiece.color === "white"
+      ? setCapturedWhitePieces([...capturedWhitePieces, capturedPiece])
+      : setCapturedBlackPieces([...capturedBlackPieces, capturedPiece]);
   };
 
   const handleChangePositon = (dropLocationPiece, dropLocation) => {
@@ -112,6 +121,9 @@ export const MainContextProvider = ({ children }) => {
                 dropLocation
               )
             ) {
+              if (dropLocationPiece !== "") {
+                handleCapturedPiece(dropLocationPiece);
+              }
               row[y] = currentPiece;
               let [a, b] = currentPieceLocation;
               mainBoard[a][b] = "";
@@ -131,8 +143,10 @@ export const MainContextProvider = ({ children }) => {
   };
 
   const handleReset = () => {
-    setMainBoard([]);
     setShowBoard(false);
+    setMainBoard([]);
+    setCapturedWhitePieces([]);
+    setCapturedBlackPieces([]);
     setFirstMoveDone(false);
     setTotalMoves(1);
     setPieceSelected(false);
@@ -150,6 +164,8 @@ export const MainContextProvider = ({ children }) => {
         handleMove,
         pieceSelected,
         handleChangePositon,
+        capturedBlackPieces,
+        capturedWhitePieces,
       }}
     >
       {children}
