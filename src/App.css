@@ -12,24 +12,32 @@ body {
 }
 
 .app {
+  text-align: start;
   display: flex;
-  justify-content: center;
+  /* padding: auto; */
+  /* justify-content: end; */
+  /* align-items: end/; */
+  /* background: rgb(65, 57, 51); */
 }
 
 .list {
   color: rgb(255, 255, 255);
   list-style: none;
-  background: firebrick;
   width: 10%;
-  border: 1px solid black;
-  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .individual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin-bottom: 2px;
 }
 
 .vertical {
-  margin: 15px;
   height: 100%;
 }
 

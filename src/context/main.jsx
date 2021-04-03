@@ -24,11 +24,16 @@ export const MainContextProvider = ({ children }) => {
               { name: "rook", color: "black" },
             ];
           case 1:
-            return Array(8).fill({
-              name: "pawn",
-              color: "black",
-              firstMove: false,
-            });
+            return Array(8)
+              .fill({})
+              .map((pawn, i) => {
+                return {
+                  id: i,
+                  name: "pawn",
+                  color: "black",
+                  firstMove: false,
+                };
+              });
           case 7:
             return [
               { name: "rook", color: "white" },
@@ -41,11 +46,16 @@ export const MainContextProvider = ({ children }) => {
               { name: "rook", color: "white" },
             ];
           case 6:
-            return Array(8).fill({
-              name: "pawn",
-              color: "white",
-              firstMove: false,
-            });
+            return Array(8)
+              .fill({})
+              .map((pawn, i) => {
+                return {
+                  id: i,
+                  name: "pawn",
+                  color: "white",
+                  firstMove: false,
+                };
+              });
           default:
             return Array(8).fill("");
         }
@@ -105,6 +115,8 @@ export const MainContextProvider = ({ children }) => {
     setTotalMoves(totalMoves + 1);
   };
 
+  const handlePawnFirstMove = (id) => {};
+
   const handleReset = () => {
     setMainBoard([]);
     setShowBoard(false);
@@ -120,6 +132,7 @@ export const MainContextProvider = ({ children }) => {
         handleMove,
         pieceSelected,
         handleChangePositon,
+        handlePawnFirstMove,
       }}
     >
       {children}

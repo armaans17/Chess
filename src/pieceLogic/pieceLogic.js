@@ -16,24 +16,23 @@ const handleValidation = (
   // Check Drop Location
   // If unvalid return false else continue with validation
   function handlePawnMove() {
-    piece.color === "white" ? handleWhitePawn() : handleBlackPawn();
+    return piece.color === "white" ? handleWhitePawn() : handleBlackPawn();
 
     function handleWhitePawn() {
-      console.log(
-        "white Pawn",
-        piece,
-        "from",
-        currentPieceLocation,
-        "to",
-        dropLocation
-      );
+      if (
+        currentPieceLocation[0] - dropLocation[0] === 2 &&
+        currentPieceLocation[1] === dropLocation[1] &&
+        !piece.firstMove
+      ) {
+        console.log(piece.firstMove);
+        piece.firstMove = true;
+        return true;
+      }
     }
 
     function handleBlackPawn() {
       console.log("black Pawn");
     }
-
-    return true;
   }
 };
 
