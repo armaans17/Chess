@@ -1,3 +1,5 @@
+const canEnPassant = false;
+
 const handleValidation = (
   piece,
   currentPieceLocation,
@@ -16,22 +18,27 @@ const handleValidation = (
   // Check Drop Location
   // If unvalid return false else continue with validation
   function handlePawnMove() {
-    console.log(currentPieceLocation, dropLocation);
-    return piece.color === "white" ? handleWhitePawn() : handleBlackPawn();
+    let moveDistance =
+      piece.color === "white"
+        ? currentPieceLocation[0] - dropLocation[0]
+        : dropLocation[0] - currentPieceLocation[0];
 
-    function handleWhitePawn() {
+    return handlePawnValidation();
+
+    function handlePawnValidation() {
       // Double Move
       if (
-        currentPieceLocation[0] - dropLocation[0] === 2 &&
+        moveDistance === 2 &&
         currentPieceLocation[1] === dropLocation[1] &&
         !piece.firstMove &&
         dropLocationPiece === ""
       ) {
+        // en passant
         piece.firstMove = true;
         return true;
       }
       // Single Move
-      else if (currentPieceLocation[0] - dropLocation[0] === 1) {
+      else if (moveDistance === 1) {
         if (dropLocation[1] === currentPieceLocation[1]) {
           piece.firstMove = true;
           return true;
@@ -47,11 +54,10 @@ const handleValidation = (
             return true;
           }
         }
+      } else {
+        alert("invalid move");
+        return false;
       }
-    }
-
-    function handleBlackPawn() {
-      return true;
     }
   }
 };
