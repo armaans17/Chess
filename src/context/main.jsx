@@ -74,18 +74,19 @@ export const MainContextProvider = ({ children }) => {
 
   const handleMove = (piece, coordinates) => {
     if (piece === "") return;
+
     if (piece.color !== WB) {
       alert(`${WB}'s turn!`);
       return;
     }
+
     if (!firstMoveDone && piece.color !== "white") return;
 
     setPieceSelected(true);
     setCurrentPiece(piece);
     setCurrentPieceLocation(coordinates);
     console.log(firstMoveDone, WB);
-    setFirstMoveDone(!firstMoveDone);
-    console.log(firstMoveDone, WB);
+    setFirstMoveDone(true);
   };
 
   const handleChangePositon = (dropLocationPiece, dropLocation) => {
@@ -132,6 +133,10 @@ export const MainContextProvider = ({ children }) => {
   const handleReset = () => {
     setMainBoard([]);
     setShowBoard(false);
+    setFirstMoveDone(false);
+    setTotalMoves(1);
+    setPieceSelected(false);
+    setPlayer(true);
   };
 
   return (
