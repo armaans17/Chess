@@ -12,13 +12,15 @@ const Board = () => {
     handleReset,
     capturedBlackPieces,
     capturedWhitePieces,
+    handleUndoMove,
   } = useContext(MainContext);
-  console.log(mainBoard, capturedBlackPieces);
+  // console.log(mainBoard);
 
   return (
     <div className="board-container">
       {showBoard && (
         <div className="piece-container align-bottom">
+          {/* <button onClick={handleUndoMove}>Undo</button> */}
           {capturedBlackPieces.map((capturedPiece, i) => (
             <div key={i}>{setCurrentPiece(capturedPiece)}</div>
           ))}

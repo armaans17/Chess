@@ -6,7 +6,7 @@ export const MainContext = createContext();
 export const MainContextProvider = ({ children }) => {
   const [mainBoard, setMainBoard] = useState([]);
   const [showBoard, setShowBoard] = useState(false);
-  const [totalMoves, setTotalMoves] = useState(1);
+  const [totalMoves, setTotalMoves] = useState(0);
 
   const [player, setPlayer] = useState(true);
   const WB = player ? "white" : "black";
@@ -98,6 +98,12 @@ export const MainContextProvider = ({ children }) => {
       : setCapturedBlackPieces([...capturedBlackPieces, capturedPiece]);
   };
 
+  // const [undoMove, setUndoMove] = useState([
+  //   mainBoard.map((arr) => {
+  //     return arr.slice();
+  //   }),
+  // ]);
+
   const handleChangePositon = (dropLocationPiece, dropLocation) => {
     if (dropLocationPiece.color === currentPiece.color) {
       setCurrentPiece(dropLocationPiece);
@@ -128,7 +134,7 @@ export const MainContextProvider = ({ children }) => {
               let [a, b] = currentPieceLocation;
               mainBoard[a][b] = "";
               setPlayer(!player);
-              return;
+              return true;
             } else {
               return row[y];
             }
@@ -140,6 +146,10 @@ export const MainContextProvider = ({ children }) => {
 
     setPieceSelected(false);
     setTotalMoves(totalMoves + 1);
+  };
+
+  const handleUndoMove = () => {
+    // setMainBoard(undoMove[undoMove.length - 1]);
   };
 
   const handleReset = () => {
@@ -166,6 +176,7 @@ export const MainContextProvider = ({ children }) => {
         handleChangePositon,
         capturedBlackPieces,
         capturedWhitePieces,
+        handleUndoMove,
       }}
     >
       {children}
