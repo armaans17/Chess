@@ -65,18 +65,23 @@ const handleValidation = (
 
   function handleBishopMove() {
     console.log(piece, currentPieceLocation, dropLocationPiece, dropLocation);
-    let rowDistance = Math.abs(currentPieceLocation[0] - dropLocation[0]);
-    let colDistance = Math.abs(currentPieceLocation[1] - dropLocation[1]);
+    let rowDistance = currentPieceLocation[0] - dropLocation[0];
+    let colDistance = currentPieceLocation[1] - dropLocation[1];
 
-    if (rowDistance !== colDistance) {
+    if (Math.abs(rowDistance) !== Math.abs(colDistance)) {
       alert("Invalid Move");
       return false;
     }
+
     let rowDifference = 0;
     let colDifference = 0;
 
     console.log(rowDistance, colDistance);
-    for (let i = 0; i < rowDistance; i++) {}
+    for (let i = 0; i < Math.abs(rowDistance); i++) {}
+
+    while (rowDistance) {
+      return false;
+    }
   }
 };
 
