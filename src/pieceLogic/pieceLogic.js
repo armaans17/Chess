@@ -6,10 +6,11 @@ const handleValidation = (
   dropLocationPiece,
   dropLocation
 ) => {
-  return true;
   switch (piece.name) {
     case "pawn":
       return handlePawnMove();
+    case "bishop":
+      return handleBishopMove();
     default:
       return false;
   }
@@ -60,6 +61,22 @@ const handleValidation = (
         return false;
       }
     }
+  }
+
+  function handleBishopMove() {
+    console.log(piece, currentPieceLocation, dropLocationPiece, dropLocation);
+    let rowDistance = Math.abs(currentPieceLocation[0] - dropLocation[0]);
+    let colDistance = Math.abs(currentPieceLocation[1] - dropLocation[1]);
+
+    if (rowDistance !== colDistance) {
+      alert("Invalid Move");
+      return false;
+    }
+    let rowDifference = 0;
+    let colDifference = 0;
+
+    console.log(rowDistance, colDistance);
+    for (let i = 0; i < rowDistance; i++) {}
   }
 };
 
