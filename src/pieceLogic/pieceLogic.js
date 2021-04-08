@@ -63,6 +63,12 @@ const handleValidation = (
     }
   }
 
+  
+  /*
+  Check For Diagonal moves.
+  Loop until the final position is reached
+  Do validation for drop location
+  */
   function handleBishopMove() {
     console.log(piece, currentPieceLocation, dropLocationPiece, dropLocation);
     let rowDistance = currentPieceLocation[0] - dropLocation[0];
