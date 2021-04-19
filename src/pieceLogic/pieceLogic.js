@@ -12,7 +12,7 @@ const handleValidation = (
     case "bishop":
       return handleBishopMove();
     default:
-      return false;
+      return true;
   }
 
   // Situations to take care when handling pawn move
