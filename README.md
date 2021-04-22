@@ -1,6 +1,5 @@
 
-                                               React Chess
-
+                                               React Chess - Starting page
 <img width="1279" alt="h" src="https://user-images.githubusercontent.com/64493642/113803427-88888100-972a-11eb-808b-db4d042a1dac.PNG">
 
                                                Main Board
